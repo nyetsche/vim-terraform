@@ -41,7 +41,9 @@ command! -nargs=+ -complete=custom,terraform#commands -buffer Terraform
   \ execute '!'.g:terraform_binary_path.' '.<q-args>.' -no-color'
 
 command! -nargs=0 -buffer TerraformFmt call terraform#fmt()
-let b:undo_ftplugin .= '|delcommand Terraform|delcommand TerraformFmt'
+" Not sure why, but if this is enabled I get a "hit enter to continue" on
+" every startup reading the HCL file
+""let b:undo_ftplugin .= '|delcommand Terraform|delcommand TerraformFmt'
 
 if get(g:, 'terraform_fmt_on_save', 0)
   augroup vim.terraform.fmt
